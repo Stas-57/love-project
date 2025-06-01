@@ -1,0 +1,293 @@
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  color: #fff;
+  position: relative;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(8.5px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 400px;
+  max-width: 90vw;
+  padding: 40px 30px;
+  text-align: center;
+  animation: fadeIn 1.5s ease forwards;
+  position: relative;
+}
+
+/* Кнопка информация в правом верхнем углу */
+#infoBtn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
+  transition: background 0.3s ease;
+  user-select: none;
+  line-height: 40px;
+}
+
+#infoBtn:hover, #infoBtn:focus {
+  background: rgba(255, 255, 255, 0.45);
+  outline: none;
+}
+
+h1 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  letter-spacing: 3px;
+  animation: slideInDown 1.2s ease forwards;
+  user-select: none;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  font-weight: 400;
+  opacity: 0.85;
+  animation: slideInDown 1.5s ease forwards;
+  user-select: none;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 50px;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 5px;
+  animation: fadeIn 2s ease forwards;
+}
+
+input[type="text"]::placeholder {
+  color: #fce4ec;
+  font-weight: 400;
+}
+
+input[type="text"]:focus {
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.35);
+  color: #222;
+}
+
+button#calcBtn {
+  background: #ff7eb3;
+  border: none;
+  padding: 15px 35px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 50px;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 126, 179, 0.7);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+  margin-top: 10px;
+  animation: fadeIn 2.2s ease forwards;
+}
+
+button#calcBtn:hover {
+  background: #ff5999;
+  box-shadow: 0 6px 25px rgba(255, 89, 153, 0.9);
+}
+
+.result {
+  margin-top: 35px;
+  font-size: 2.5rem;
+  font-weight: 800;
+  opacity: 0;
+  user-select: none;
+  animation-fill-mode: forwards;
+  color: #fff;
+  text-shadow:
+    0 0 8px #ff7eb3,
+    0 0 15px #ff4d94,
+    0 0 30px #ff1a75;
+}
+
+/* Ошибки */
+.error-message {
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  margin-top: -10px;
+  margin-bottom: 15px;
+  min-height: 20px;
+  user-select: none;
+}
+
+/* Модальное окно */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal[aria-hidden="false"],
+.modal:not([hidden]) {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 15px;
+  padding: 30px 25px;
+  max-width: 320px;
+  width: 90vw;
+  text-align: center;
+  color: #fff;
+  box-shadow:
+    0 0 20px #ff7eb3,
+    0 0 40px #ff4d94;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+}
+
+.modal-content p {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  user-select: text;
+}
+
+.modal-content button {
+  background: #ff7eb3;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 30px;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 126, 179, 0.7);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+
+.modal-content button:hover {
+  background: #ff5999;
+  box-shadow: 0 6px 25px rgba(255, 89, 153, 0.9);
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    text-shadow:
+      0 0 8px #ff7eb3,
+      0 0 15px #ff4d94,
+      0 0 30px #ff1a75;
+    opacity: 1;
+  }
+  50% {
+    text-shadow:
+      0 0 12px #ff7eb3,
+      0 0 20px #ff4d94,
+      0 0 40px #ff1a75;
+    opacity: 0.85;
+  }
+}
+
+/* === Адаптив для мобильных === */
+@media (max-width: 480px) {
+  .container {
+    width: 95vw;
+    padding: 30px 20px;
+    border-radius: 15px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  input[type="text"] {
+    font-size: 1.1rem;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+  }
+
+  button#calcBtn {
+    width: 100%;
+    padding: 15px 0;
+    font-size: 1.1rem;
+    border-radius: 40px;
+  }
+
+  .result {
+    font-size: 2rem;
+    margin-top: 25px;
+  }
+
+  #infoBtn {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+    top: 10px;
+    right: 10px;
+    line-height: 35px;
+  }
+}
